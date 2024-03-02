@@ -1,0 +1,15 @@
+
+✅ HECHO
+
+ENTREGAR EN TODOS EL ENLACE AL REPOSITORIO Y ESPECIFICAR EN EL README DONDE 
+SE ENCUENTRA EL MODELO E/R Y LAS PETICIONES DE PRUEBA
+
+-Modelo Para Juego de Palabras
+
+-API CRUD Entidades Jugador y Equipo
+
+-API CRUD Partida
+
+-API para petición de palabras (Sólo GET)
+
+-Conjunto de peticions para probar la API (Postman, Insomnia). JUnit
