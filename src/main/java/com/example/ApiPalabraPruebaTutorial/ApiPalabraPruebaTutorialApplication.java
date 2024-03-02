@@ -9,5 +9,5 @@ public class ApiPalabraPruebaTutorialApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiPalabraPruebaTutorialApplication.class, args);
 	}
-
+	
 }
