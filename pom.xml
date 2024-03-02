@@ -16,6 +16,8 @@
 	<description>API palabra</description>
 	<properties>
 		<java.version>17</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,6 +59,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.5.4</version>
 			</plugin>
 		</plugins>
 	</build>
