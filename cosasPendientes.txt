@@ -4,7 +4,7 @@
 ENTREGAR EN TODOS EL ENLACE AL REPOSITORIO Y ESPECIFICAR EN EL README DONDE 
 SE ENCUENTRA EL MODELO E/R Y LAS PETICIONES DE PRUEBA
 
--Modelo Para Juego de Palabras
+-Modelo Para Juego de Palabras ✅
 
 -API CRUD Entidades Jugador y Equipo
 
