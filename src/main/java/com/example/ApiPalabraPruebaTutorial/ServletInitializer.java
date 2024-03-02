@@ -1,4 +1,4 @@
-package com.example.ApiPalabra;
+package com.example.ApiPalabraPruebaTutorial;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(ApiPalabraApplication.class);
+		return application.sources(ApiPalabraPruebaTutorialApplication.class);
 	}
 
 }

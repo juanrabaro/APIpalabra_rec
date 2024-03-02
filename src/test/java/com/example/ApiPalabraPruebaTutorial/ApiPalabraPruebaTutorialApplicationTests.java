@@ -1,10 +1,10 @@
-package com.example.ApiPalabra;
+package com.example.ApiPalabraPruebaTutorial;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiPalabraApplicationTests {
+class ApiPalabraPruebaTutorialApplicationTests {
 
 	@Test
 	void contextLoads() {
