@@ -1,4 +1,4 @@
-INSERT into WORD (word) VALUES
+INSERT into words (words) VALUES
 ('cognocer'),
 ('cognombre'),
 ('cognomen'),

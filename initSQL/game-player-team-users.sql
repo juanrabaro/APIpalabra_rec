@@ -1,5 +1,5 @@
 /*
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`TEAM` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`teams` (
   `id_team` INT NOT NULL AUTO_INCREMENT,
   `badge` BLOB NULL,
   `score` INT NULL DEFAULT 0,
@@ -8,13 +8,13 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`TEAM` (
   UNIQUE INDEX `team_name_UNIQUE` (`team_name` ASC) VISIBLE);
 */
 
-insert into TEAM (team_name, score) values ('team1', 10);
-insert into TEAM (team_name, score) values ('team2', 40);
-insert into TEAM (team_name, score) values ('team3', 15);
-insert into TEAM (team_name, score) values ('team4', 20);
+insert into teams (team_name, score) values ('team1', 10);
+insert into teams (team_name, score) values ('team2', 40);
+insert into teams (team_name, score) values ('team3', 15);
+insert into teams (team_name, score) values ('team4', 20);
 
 /*
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`PLAYER` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`players` (
   `id_player` INT NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(45) NOT NULL,
   `score` INT NULL DEFAULT 0,
@@ -25,18 +25,18 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`PLAYER` (
   INDEX `fk_PLAYER_TEAM_idx` (`TEAM_id_team` ASC) VISIBLE,
   CONSTRAINT `fk_PLAYER_TEAM`
     FOREIGN KEY (`TEAM_id_team`)
-    REFERENCES `apiPalabra`.`TEAM` (`id_team`)
+    REFERENCES `apiPalabra`.`teams` (`id_team`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 */
 
-insert into PLAYER (user_name, TEAM_id_team, score) values ('player1', 1, 10);
-insert into PLAYER (user_name, TEAM_id_team, score) values ('player2', 2, 40);
-insert into PLAYER (user_name, TEAM_id_team, score) values ('player3', 3, 15);
-insert into PLAYER (user_name, TEAM_id_team, score) values ('player4', 4, 20);
+insert into players (user_name, TEAM_id_team, score) values ('player1', 1, 10);
+insert into players (user_name, TEAM_id_team, score) values ('player2', 2, 40);
+insert into players (user_name, TEAM_id_team, score) values ('player3', 3, 15);
+insert into players (user_name, TEAM_id_team, score) values ('player4', 4, 20);
 
 /*
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`GAME` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`games` (
   `id_game` INT NOT NULL AUTO_INCREMENT,
   `max_tries` INT NULL,
   `description` VARCHAR(72) NULL,
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`GAME` (
   PRIMARY KEY (`id_game`));
 */
 
-insert into GAME (max_tries, description, difficulty) values (5, 'easy game', 'easy');
-insert into GAME (max_tries, description, difficulty) values (10, 'normal game', 'normal');
-insert into GAME (max_tries, description, difficulty) values (15, 'hard game', 'hard');
+insert into games (max_tries, description, difficulty) values (5, 'easy games', 'easy');
+insert into games (max_tries, description, difficulty) values (10, 'normal games', 'normal');
+insert into games (max_tries, description, difficulty) values (15, 'hard games', 'hard');
 
 /*
 CREATE TABLE IF NOT EXISTS `apiPalabra`.`MATCH` (
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`MATCH` (
   `n_tries` VARCHAR(45) NOT NULL,
   `score` INT NULL DEFAULT 0,
   `dateTime` DATETIME NULL,
-  `word` VARCHAR(45) NOT NULL,
+  `words` VARCHAR(45) NOT NULL,
   `PLAYER_id_player` INT NOT NULL,
   `GAME_id_game` INT NOT NULL,
   PRIMARY KEY (`id_match`, `GAME_id_game`),
@@ -62,25 +62,25 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`MATCH` (
   INDEX `fk_MATCH_GAME1_idx` (`GAME_id_game` ASC) VISIBLE,
   CONSTRAINT `fk_MATCH_PLAYER1`
     FOREIGN KEY (`PLAYER_id_player`)
-    REFERENCES `apiPalabra`.`PLAYER` (`id_player`)
+    REFERENCES `apiPalabra`.`players` (`id_player`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_MATCH_GAME1`
     FOREIGN KEY (`GAME_id_game`)
-    REFERENCES `apiPalabra`.`GAME` (`id_game`)
+    REFERENCES `apiPalabra`.`games` (`id_game`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 */
 
-insert into `apiPalabra`.`GAME_MATCH` (`n_tries`, `score`, `dateTime`, `word`, `PLAYER_id_player`, `GAME_id_game`) values ('1', '10', '2020-01-01 00:00:00', 'hola', '1', '1');
-insert into `apiPalabra`.`GAME_MATCH` (`n_tries`, `score`, `dateTime`, `word`, `PLAYER_id_player`, `GAME_id_game`) values ('2', '20', '2020-01-01 00:00:00', 'hola', '2', '2');
-insert into `apiPalabra`.`GAME_MATCH` (`n_tries`, `score`, `dateTime`, `word`, `PLAYER_id_player`, `GAME_id_game`) values ('3', '5', '2020-01-01 00:00:00', 'hola', '3', '3');
+insert into `apiPalabra`.`game_matches` (`n_tries`, `score`, `dateTime`, `words`, `PLAYER_id_player`, `GAME_id_game`) values ('1', '10', '2020-01-01 00:00:00', 'hola', '1', '1');
+insert into `apiPalabra`.`game_matches` (`n_tries`, `score`, `dateTime`, `words`, `PLAYER_id_player`, `GAME_id_game`) values ('2', '20', '2020-01-01 00:00:00', 'hola', '2', '2');
+insert into `apiPalabra`.`game_matches` (`n_tries`, `score`, `dateTime`, `words`, `PLAYER_id_player`, `GAME_id_game`) values ('3', '5', '2020-01-01 00:00:00', 'hola', '3', '3');
 
 /*
 -- -----------------------------------------------------
--- Table `apiPalabra`.`USER`
+-- Table `apiPalabra`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`USER` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`users` (
     `id_user` INT NOT NULL AUTO_INCREMENT,
     `user_name` VARCHAR(45) NOT NULL,
     `password` VARCHAR(45) NOT NULL,
@@ -89,5 +89,5 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`USER` (
     UNIQUE INDEX `user_namel_UNIQUE` (`user_name` ASC) VISIBLE);
 -- -----------------------------------------------------
 */
-insert into USER (user_name, password, email) values ('admin', 'admin', 'admin@admin.com');
-insert into USER (user_name, password, email) values ('user', 'user', 'user@user.com');
+insert into users (user_name, password, email) values ('admin', 'admin', 'admin@admin.com');
+insert into users (user_name, password, email) values ('users', 'users', 'users@users.com');

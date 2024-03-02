@@ -18,9 +18,9 @@ CREATE SCHEMA IF NOT EXISTS `apiPalabra` ;
 USE `apiPalabra` ;
 
 -- -----------------------------------------------------
--- Table `apiPalabra`.`TEAM`
+-- Table `apiPalabra`.`teams`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`TEAM` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`teams` (
                                                      `id_team` INT NOT NULL AUTO_INCREMENT,
                                                      `badge` BLOB NULL,
                                                      `score` INT NULL DEFAULT 0,
@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`TEAM` (
 
 
 -- -----------------------------------------------------
--- Table `apiPalabra`.`PLAYER`
+-- Table `apiPalabra`.`players`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`PLAYER` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`players` (
                                                        `id_player` INT NOT NULL AUTO_INCREMENT,
                                                        `user_name` VARCHAR(45) NOT NULL,
                                                        `score` INT NULL DEFAULT 0,
@@ -43,15 +43,15 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`PLAYER` (
                                                        INDEX `fk_PLAYER_TEAM_idx` (`TEAM_id_team` ASC) VISIBLE,
                                                        CONSTRAINT `fk_PLAYER_TEAM`
                                                            FOREIGN KEY (`TEAM_id_team`)
-                                                               REFERENCES `apiPalabra`.`TEAM` (`id_team`)
+                                                               REFERENCES `apiPalabra`.`teams` (`id_team`)
                                                                ON DELETE NO ACTION
                                                                ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `apiPalabra`.`GAME`
+-- Table `apiPalabra`.`games`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`GAME` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`games` (
                                                      `id_game` INT NOT NULL AUTO_INCREMENT,
                                                      `max_tries` INT NULL,
                                                      `description` VARCHAR(72) NULL,
@@ -60,14 +60,14 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`GAME` (
 
 
 -- -----------------------------------------------------
--- Table `apiPalabra`.`GAME_MATCH`
+-- Table `apiPalabra`.`game_matches`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`GAME_MATCH` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`game_matches` (
                                                            `id_match` INT NOT NULL AUTO_INCREMENT,
                                                            `n_tries` VARCHAR(45) NOT NULL,
                                                            `score` INT NULL DEFAULT 0,
                                                            `dateTime` DATETIME NULL,
-                                                           `word` VARCHAR(45) NOT NULL,
+                                                           `words` VARCHAR(45) NOT NULL,
                                                            `PLAYER_id_player` INT NOT NULL,
                                                            `GAME_id_game` INT NOT NULL,
                                                            PRIMARY KEY (`id_match`, `GAME_id_game`),
@@ -75,29 +75,29 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`GAME_MATCH` (
                                                            INDEX `fk_MATCH_GAME1_idx` (`GAME_id_game` ASC) VISIBLE,
                                                            CONSTRAINT `fk_MATCH_PLAYER1`
                                                                FOREIGN KEY (`PLAYER_id_player`)
-                                                                   REFERENCES `apiPalabra`.`PLAYER` (`id_player`)
+                                                                   REFERENCES `apiPalabra`.`players` (`id_player`)
                                                                    ON DELETE NO ACTION
                                                                    ON UPDATE NO ACTION,
                                                            CONSTRAINT `fk_MATCH_GAME1`
                                                                FOREIGN KEY (`GAME_id_game`)
-                                                                   REFERENCES `apiPalabra`.`GAME` (`id_game`)
+                                                                   REFERENCES `apiPalabra`.`games` (`id_game`)
                                                                    ON DELETE NO ACTION
                                                                    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `apiPalabra`.`WORD`
+-- Table `apiPalabra`.`words`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`WORD` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`words` (
                                                      `id_word` INT NOT NULL AUTO_INCREMENT,
-                                                     `word` VARCHAR(45) NOT NULL,
+                                                     `words` VARCHAR(45) NOT NULL,
                                                      PRIMARY KEY (`id_word`));
 
 
 -- -----------------------------------------------------
--- Table `apiPalabra`.`GAME_has_WORD`
+-- Table `apiPalabra`.`game_has_words`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`GAME_has_WORD` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`game_has_words` (
                                                               `GAME_id_game` INT NOT NULL,
                                                               `WORD_id_word` INT NOT NULL,
                                                               `difficulty` ENUM('easy', 'normal', 'hard') NOT NULL,
@@ -106,20 +106,20 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`GAME_has_WORD` (
                                                               INDEX `fk_GAME_has_WORD_GAME1_idx` (`GAME_id_game` ASC) VISIBLE,
                                                               CONSTRAINT `fk_GAME_has_WORD_GAME1`
                                                                   FOREIGN KEY (`GAME_id_game`)
-                                                                      REFERENCES `apiPalabra`.`GAME` (`id_game`)
+                                                                      REFERENCES `apiPalabra`.`games` (`id_game`)
                                                                       ON DELETE NO ACTION
                                                                       ON UPDATE NO ACTION,
                                                               CONSTRAINT `fk_GAME_has_WORD_WORD1`
                                                                   FOREIGN KEY (`WORD_id_word`)
-                                                                      REFERENCES `apiPalabra`.`WORD` (`id_word`)
+                                                                      REFERENCES `apiPalabra`.`words` (`id_word`)
                                                                       ON DELETE NO ACTION
                                                                       ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `apiPalabra`.`USER`
+-- Table `apiPalabra`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`USER` (
+CREATE TABLE IF NOT EXISTS `apiPalabra`.`users` (
                                                      `id_user` INT NOT NULL AUTO_INCREMENT,
                                                      `user_name` VARCHAR(45) NOT NULL,
                                                      `password` VARCHAR(45) NOT NULL,
