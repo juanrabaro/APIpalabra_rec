@@ -24,4 +24,10 @@ public class PlayersController {
     public PlayersModel savePlayer(@RequestBody PlayersModel player){
         return playersService.createPlayer(player);
     }
+
+    @DeleteMapping("/players/{id}")
+    public String deletePlayer(@PathVariable Integer id){
+        playersService.deletePlayer(id);
+        return "Jugador con id " + id + " eliminado";
+    }
 }

@@ -37,7 +37,7 @@ public class PlayersService {
             throw new RuntimeException("Ese equipo no existe");
         }
 
-        // Suma el score del nuevo jugador al score actual del equipo
+        // Suma el score del nuevo jugador al score del equipo
         TeamsModel team = teamSeleccionado.get();
         team.setScore(team.getScore() + player.getScore());
 
@@ -45,5 +45,22 @@ public class PlayersService {
         teamsService.saveTeam(team);
 
         return iPlayersRepository.save(player);
+    }
+
+    public PlayersModel deletePlayer(Integer id) {
+        PlayersModel player = iPlayersRepository.findById(id).orElse(null);
+        if (player == null) {
+            throw new RuntimeException("El jugador no existe");
+        }
+
+        // Resta el score del jugador al score del equipo
+        TeamsModel team = player.getTeam();
+        team.setScore(team.getScore() - player.getScore());
+
+        // Guarda el equipo actualizado
+        teamsService.saveTeam(team);
+
+        iPlayersRepository.deleteById(id);
+        return player;
     }
 }
