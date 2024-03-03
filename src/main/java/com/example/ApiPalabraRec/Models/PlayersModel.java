@@ -28,7 +28,7 @@ public class PlayersModel {
     private int id_player;
 
     @Column(nullable = false, length = 45)
-    private String user_name;
+    private String userName;
 
     @Column(nullable = true, columnDefinition = "INT DEFAULT 0")
     private int score;

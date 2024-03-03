@@ -19,12 +19,14 @@ public class PlayersService {
         return iPlayersRepository.findAll();
     }
 
-    public PlayersModel createPlayer(@RequestBody PlayersModel player) {
-        Optional<PlayersModel> playerExist = iPlayersRepository.findById(player.getId_player());
-        if ( playerExist.isPresent() ) {
-
-        } else {
-            return iPlayersRepository.save(player);
+    public PlayersModel createPlayer(PlayersModel player) {
+        if (player.getTeam() == null) {
+            throw new RuntimeException("El equipo del jugador no puede ser nulo");
         }
+        PlayersModel existingPlayer = iPlayersRepository.findByUserName(player.getUserName());
+        if (existingPlayer != null) {
+            throw new RuntimeException("El nombre del jugador ya existe");
+        }
+        return iPlayersRepository.save(player);
     }
 }
