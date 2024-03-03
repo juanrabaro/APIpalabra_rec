@@ -30,4 +30,9 @@ public class PlayersController {
         playersService.deletePlayer(id);
         return "Jugador con id " + id + " eliminado";
     }
+
+    @PutMapping("/players")
+    public PlayersModel updatePlayer(@RequestBody PlayersModel player){
+        return playersService.updatePlayer(player);
+    }
 }

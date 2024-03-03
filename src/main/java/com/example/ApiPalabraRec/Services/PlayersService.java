@@ -63,4 +63,41 @@ public class PlayersService {
         iPlayersRepository.deleteById(id);
         return player;
     }
+
+    public PlayersModel updatePlayer(PlayersModel player) {
+        if (player.getTeam() == null) {
+            throw new RuntimeException("El equipo del jugador no puede ser nulo");
+        }
+
+        Integer idTeamSeleccionado = player.getTeam().getId_team();
+        Optional<TeamsModel> teamSeleccionado = teamsService.getTeamById(idTeamSeleccionado);
+        if (teamSeleccionado.isEmpty()) {
+            throw new RuntimeException("Ese equipo no existe");
+        }
+
+        // Coge el jugador antes del cambio
+        PlayersModel playerAntiguo = iPlayersRepository.findById(player.getId_player()).orElse(null);
+        if (playerAntiguo == null) {
+            throw new RuntimeException("El jugador no existe");
+        }
+
+        // Coge el equipo que se va a cambiar antes del cambio
+        TeamsModel teamAntiguo = playerAntiguo.getTeam();
+
+        // Selecciona el equipo del jugador a actualizar
+        TeamsModel team = teamSeleccionado.get();
+
+        // Hace la operación correspondiente para actualizar el score del equipo
+        if ( player.getScore() > playerAntiguo.getScore()) {
+            team.setScore(teamAntiguo.getScore() + (player.getScore() - playerAntiguo.getScore()));
+        } else if (player.getScore() < playerAntiguo.getScore()) {
+            team.setScore(teamAntiguo.getScore() - (playerAntiguo.getScore() - player.getScore()));
+        }
+
+        // Guarda el equipo actualizado
+        teamsService.saveTeam(team);
+
+        // Guarda el jugador actualizado
+        return iPlayersRepository.save(player);
+    }
 }
