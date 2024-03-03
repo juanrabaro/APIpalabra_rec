@@ -13,7 +13,7 @@ public class WordsService {
     @Autowired
     private IWordsRepository iWordsRepository;
 
-    public List<WordsModel> getWords() {
+    public List<WordsModel> getAllWords() {
         return iWordsRepository.findAll();
     }
 }

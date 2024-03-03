@@ -2,6 +2,7 @@ package com.example.ApiPalabraPruebaTutorial.Controllers;
 
 import com.example.ApiPalabraPruebaTutorial.Models.TeamsModel;
 import com.example.ApiPalabraPruebaTutorial.Repositories.ITeamsRepository;
+import com.example.ApiPalabraPruebaTutorial.Services.TeamsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,10 @@ import java.util.List;
 public class TeamsController {
 
     @Autowired
-    private ITeamsRepository iTeamsRepository;
+    private TeamsService teamsService;
 
     @GetMapping("/teams")
-    public List<TeamsModel> getTeams() {
-        return iTeamsRepository.findAll();
+    public List<TeamsModel> getAllTeams() {
+        return teamsService.getAllTeams();
     }
 }

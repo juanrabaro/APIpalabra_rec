@@ -3,6 +3,7 @@ package com.example.ApiPalabraPruebaTutorial.Controllers;
 
 import com.example.ApiPalabraPruebaTutorial.Models.PlayersModel;
 import com.example.ApiPalabraPruebaTutorial.Repositories.IPlayersRepository;
+import com.example.ApiPalabraPruebaTutorial.Services.PlayersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,15 +18,10 @@ import java.util.Optional;
 public class PlayersController {
 
     @Autowired
-    private IPlayersRepository iPlayersRepository;
+    private PlayersService playersService;
 
     @GetMapping("/players")
-    public List<PlayersModel> getWords(){
-        return iPlayersRepository.findAll();
-    }
-
-    @GetMapping("/players/{id}")
-    public Optional<PlayersModel> getWords(@PathVariable int id){
-        return iPlayersRepository.findById(id);
+    public List<PlayersModel> getAllPlayers(){
+        return playersService.getAllPlayers();
     }
 }

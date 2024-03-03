@@ -14,19 +14,11 @@ import java.util.List;
 @RequestMapping("/api")
 public class WordsController {
 
-    /*@Autowired
-    private IWordsRepository iWordsRepository;
-
-    @GetMapping("/words")
-    public List<WordsModel> getWords(){
-        return (List<WordsModel>) iWordsRepository.findAll();
-    }*/
-
     @Autowired
     private WordsService wordsService;
 
     @GetMapping("/words")
-    public List<WordsModel> getWords() {
-        return wordsService.getWords();
+    public List<WordsModel> getAllWords() {
+        return wordsService.getAllWords();
     }
 }
