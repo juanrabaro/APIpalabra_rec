@@ -15,6 +15,7 @@ package com.example.ApiPalabraRec.Models;
         ON UPDATE NO ACTION);*/
 
 import jakarta.persistence.*;
+import jdk.jfr.Name;
 import lombok.Data;
 
 
