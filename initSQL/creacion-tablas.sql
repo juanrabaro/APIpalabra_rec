@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`game_matches` (
                                                            `id_match` INT NOT NULL AUTO_INCREMENT,
                                                            `n_tries` VARCHAR(45) NOT NULL,
                                                            `score` INT NULL DEFAULT 0,
-                                                           `dateTime` DATETIME NULL,
+                                                           `date_time` DATE NULL,
                                                            `words` VARCHAR(45) NOT NULL,
                                                            `PLAYER_id_player` INT NOT NULL,
                                                            `GAME_id_game` INT NOT NULL,

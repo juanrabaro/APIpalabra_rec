@@ -4,7 +4,7 @@ package com.example.ApiPalabraPruebaTutorial.Models;
 `id_match` INT NOT NULL AUTO_INCREMENT,
        `n_tries` VARCHAR(45) NOT NULL,
        `score` INT NULL DEFAULT 0,
-       `dateTime` DATETIME NULL,
+       `date_time` date_time NULL,
        `words` VARCHAR(45) NOT NULL,
        `PLAYER_id_player` INT NOT NULL,
        `GAME_id_game` INT NOT NULL,
@@ -43,7 +43,7 @@ public class GameMatchesModel {
     private int score;
 
     @Column(nullable = true)
-    private String dateTime;
+    private String date_time;
 
     @Column(nullable = false, length = 45)
     private String words;
