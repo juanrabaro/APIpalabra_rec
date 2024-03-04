@@ -12,6 +12,10 @@ SE ENCUENTRA EL MODELO E/R Y LAS PETICIONES DE PRUEBA
 -API CRUD Partida ✅
 
 -API para petición de palabras (Sólo GET)
+GET debería poder recibir parámetros para decirle cuántas palabras devolver
+-Aleatoriamente 1 o más palabras, las que sean, (al menos esta parte)
+-Palabras que empiecen o terminen por una cadena,
+-Palabras que contengan una cadena.
 
 -Conjunto de peticions para probar la API (Postman, Insomnia)
 -Tests JUnit
