@@ -3,9 +3,7 @@ package com.example.ApiPalabraRec.Controllers;
 import com.example.ApiPalabraRec.Models.TeamsModel;
 import com.example.ApiPalabraRec.Services.TeamsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,10 @@ public class TeamsController {
     @GetMapping("/teams")
     public List<TeamsModel> getAllTeams() {
         return teamsService.getAllTeams();
+    }
+
+    @DeleteMapping("/teams/{id}")
+    public String deleteTeam(@PathVariable Integer id) {
+        return teamsService.deleteTeam(id);
     }
 }
