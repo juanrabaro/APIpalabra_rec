@@ -9,8 +9,9 @@ SE ENCUENTRA EL MODELO E/R Y LAS PETICIONES DE PRUEBA
 -API CRUD Entidades Jugador ✅
 -API CRUD Entidades Equipo ✅
 
--API CRUD Partida
+-API CRUD Partida ✅
 
 -API para petición de palabras (Sólo GET)
 
--Conjunto de peticions para probar la API (Postman, Insomnia). JUnit
+-Conjunto de peticions para probar la API (Postman, Insomnia)
+-Tests JUnit
