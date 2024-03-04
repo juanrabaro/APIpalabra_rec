@@ -60,4 +60,12 @@ public class TeamsService {
         iTeamsRepository.deleteById(id);
         return "Equipo con id " + id + " eliminado";
     }
+
+    public TeamsModel updateTeam(TeamsModel team) {
+        TeamsModel existingTeam = iTeamsRepository.findById(team.getId_team()).orElse(null);
+        if (existingTeam == null) {
+            throw new RuntimeException("El equipo no existe");
+        }
+        return iTeamsRepository.save(team);
+    }
 }

@@ -19,6 +19,11 @@ public class TeamsController {
         return teamsService.getAllTeams();
     }
 
+    @PutMapping("/teams")
+    public TeamsModel updateTeam(@RequestBody TeamsModel team) {
+        return teamsService.updateTeam(team);
+    }
+
     @DeleteMapping("/teams/{id}")
     public String deleteTeam(@PathVariable Integer id) {
         return teamsService.deleteTeam(id);

@@ -25,14 +25,15 @@ public class PlayersController {
         return playersService.createPlayer(player);
     }
 
+    @PutMapping("/players")
+    public PlayersModel updatePlayer(@RequestBody PlayersModel player){
+        return playersService.updatePlayer(player);
+    }
+
     @DeleteMapping("/players/{id}")
     public String deletePlayer(@PathVariable Integer id){
         playersService.deletePlayer(id);
         return "Jugador con id " + id + " eliminado";
     }
 
-    @PutMapping("/players")
-    public PlayersModel updatePlayer(@RequestBody PlayersModel player){
-        return playersService.updatePlayer(player);
-    }
 }
