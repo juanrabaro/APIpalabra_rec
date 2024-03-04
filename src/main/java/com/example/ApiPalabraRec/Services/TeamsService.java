@@ -68,4 +68,16 @@ public class TeamsService {
         }
         return iTeamsRepository.save(team);
     }
+
+    public TeamsModel newTeam(TeamsModel team) {
+        if (team.getTeamName() == null) {
+            throw new RuntimeException("El nombre del equipo no puede ser nulo");
+        }
+
+        TeamsModel existingTeam = iTeamsRepository.findByTeamName(team.getTeamName());
+        if (existingTeam != null) {
+            throw new RuntimeException("El nombre del equipo ya existe, elige otro");
+        }
+        return iTeamsRepository.save(team);
+    }
 }

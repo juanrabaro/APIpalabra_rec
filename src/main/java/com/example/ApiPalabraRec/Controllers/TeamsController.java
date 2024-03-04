@@ -19,6 +19,11 @@ public class TeamsController {
         return teamsService.getAllTeams();
     }
 
+    @PostMapping("/teams")
+    public TeamsModel newTeam(@RequestBody TeamsModel team) {
+        return teamsService.newTeam(team);
+    }
+
     @PutMapping("/teams")
     public TeamsModel updateTeam(@RequestBody TeamsModel team) {
         return teamsService.updateTeam(team);

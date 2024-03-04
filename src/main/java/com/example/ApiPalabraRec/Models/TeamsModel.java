@@ -26,7 +26,7 @@ public class TeamsModel {
     private int score;
 
     @Column(nullable = false, length = 45)
-    private String team_name;
+    private String teamName;
 
     /*@OneToMany
     private List<PlayersModel> players;*/
