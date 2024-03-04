@@ -36,4 +36,14 @@ public class WordsService {
 
         return filteredWords.subList(0, Math.min(nWords, filteredWords.size()));
     }
+
+    public List<WordsModel> containsChain(String chain, int nWords) {
+        List<WordsModel> allWords = iWordsRepository.findAll();
+
+        List<WordsModel> filteredWords = allWords.stream()
+                .filter(word -> word.getWords().contains(chain))
+                .collect(Collectors.toList());
+
+        return filteredWords.subList(0, Math.min(nWords, filteredWords.size()));
+    }
 }

@@ -31,4 +31,9 @@ public class WordsController {
     public List<WordsModel> beginOrEndBy(@PathVariable String chain, @PathVariable int nWords) {
         return wordsService.beginOrEndBy(chain, nWords);
     }
+
+    @GetMapping("/words/contains/{chain}/{nWords}")
+    public List<WordsModel> containsChain(@PathVariable String chain, @PathVariable int nWords) {
+        return wordsService.containsChain(chain, nWords);
+    }
 }
