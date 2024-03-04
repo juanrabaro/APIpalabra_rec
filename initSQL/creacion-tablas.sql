@@ -63,32 +63,6 @@ CREATE TABLE IF NOT EXISTS `apiPalabra`.`words` (
                                                      `words` VARCHAR(45) NOT NULL,
                                                      PRIMARY KEY (`id_word`));
 
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`game_has_words` (
-                                                              `GAME_id_game` INT NOT NULL,
-                                                              `WORD_id_word` INT NOT NULL,
-                                                              `difficulty` VARCHAR(10) NOT NULL,
-                                                              PRIMARY KEY (`GAME_id_game`, `WORD_id_word`),
-                                                              INDEX `fk_GAME_has_WORD_WORD1_idx` (`WORD_id_word` ASC) VISIBLE,
-                                                              INDEX `fk_GAME_has_WORD_GAME1_idx` (`GAME_id_game` ASC) VISIBLE,
-                                                              CONSTRAINT `fk_GAME_has_WORD_GAME1`
-                                                                  FOREIGN KEY (`GAME_id_game`)
-                                                                      REFERENCES `apiPalabra`.`games` (`id_game`)
-                                                                      ON DELETE NO ACTION
-                                                                      ON UPDATE NO ACTION,
-                                                              CONSTRAINT `fk_GAME_has_WORD_WORD1`
-                                                                  FOREIGN KEY (`WORD_id_word`)
-                                                                      REFERENCES `apiPalabra`.`words` (`id_word`)
-                                                                      ON DELETE NO ACTION
-                                                                      ON UPDATE NO ACTION);
-
-CREATE TABLE IF NOT EXISTS `apiPalabra`.`users` (
-                                                     `id_user` INT NOT NULL AUTO_INCREMENT,
-                                                     `user_name` VARCHAR(45) NOT NULL,
-                                                     `password` VARCHAR(45) NOT NULL,
-                                                     `email` VARCHAR(70) NULL,
-                                                     PRIMARY KEY (`id_user`),
-                                                     UNIQUE INDEX `user_namel_UNIQUE` (`user_name` ASC) VISIBLE);
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
