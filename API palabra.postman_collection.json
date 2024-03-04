@@ -107,26 +107,6 @@
 			"response": []
 		},
 		{
-			"name": "get game-has-words",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8081/api/game-has-words",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"game-has-words"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "new player",
 			"request": {
 				"method": "POST",
@@ -249,7 +229,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id_team\": 2,\r\n    \"score\": 80,\r\n    \"team_name\": \"equipo2remix\"\r\n}",
+					"raw": "{\r\n    \"id_team\": 2,\r\n    \"score\": 80,\r\n    \"teamName\": \"equipo2remix\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
