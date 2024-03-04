@@ -26,4 +26,9 @@ public class WordsController {
     public List<WordsModel> getRandomWords(@PathVariable int nWords) {
         return wordsService.getRandomWords(nWords);
     }
+
+    @GetMapping("/words/end-or-begin/{chain}/{nWords}")
+    public List<WordsModel> beginOrEndBy(@PathVariable String chain, @PathVariable int nWords) {
+        return wordsService.beginOrEndBy(chain, nWords);
+    }
 }

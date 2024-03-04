@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class WordsService {
@@ -24,5 +25,15 @@ public class WordsService {
         Collections.shuffle(allWords);
 
         return allWords.subList(0, Math.min(nWords, allWords.size()));
+    }
+
+    public List<WordsModel> beginOrEndBy(String chain, int nWords) {
+        List<WordsModel> allWords = iWordsRepository.findAll();
+
+        List<WordsModel> filteredWords = allWords.stream()
+        .filter(word -> word.getWords().startsWith(chain) || word.getWords().endsWith(chain))
+        .collect(Collectors.toList());
+
+        return filteredWords.subList(0, Math.min(nWords, filteredWords.size()));
     }
 }
