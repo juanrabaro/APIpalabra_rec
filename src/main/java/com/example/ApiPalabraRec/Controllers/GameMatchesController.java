@@ -24,8 +24,14 @@ public class GameMatchesController {
         return gameMatchesService.createGameMatch(gameMatch);
     }
 
+    @PutMapping("/game-matches")
+    public GameMatchesModel updateGameMatch(@RequestBody GameMatchesModel gameMatch) {
+        return gameMatchesService.updateGameMatch(gameMatch);
+    }
+
     @DeleteMapping("/game-matches/{id}")
     public String deleteGameMatch(@PathVariable Integer id) {
         return gameMatchesService.deleteGameMatch(id);
     }
+
 }

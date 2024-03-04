@@ -30,7 +30,6 @@ public class GameMatchesService {
     }
 
     public GameMatchesModel createGameMatch(GameMatchesModel gameMatch) {
-        System.out.println(gameMatch);
         if (gameMatch.getGame() == null) {
             throw new RuntimeException("El juego del match no puede ser nulo");
         }
@@ -57,5 +56,14 @@ public class GameMatchesService {
         }
         igameMatchesRepository.deleteById(id);
         return "El game match con el id " + id +" ha sido eliminado";
+    }
+
+    public GameMatchesModel updateGameMatch(GameMatchesModel gameMatch) {
+        System.out.println(gameMatch);
+        GameMatchesModel existingGameMatch = igameMatchesRepository.findById(gameMatch.getId_match()).orElse(null);
+        if (existingGameMatch == null) {
+            throw new RuntimeException("El match no existe");
+        }
+        return igameMatchesRepository.save(gameMatch);
     }
 }
